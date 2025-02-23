@@ -38,7 +38,7 @@ const OpenAICode = async (
     }
 
     const response = await openai.chat.completions.create({
-        model: "gpt-4",
+        model: "gpt-3.5-turbo",
         messages: [codeInstructionMessage, ...payload.messages],
     })
 
@@ -78,7 +78,7 @@ const OpenAIConversation = async (
     }
 
     const response = await openai.chat.completions.create({
-        model: "gpt-4",
+        model: "gpt-3.5-turbo",
         messages: [conversationInstructionMessage, ...payload.messages],
     })
 
