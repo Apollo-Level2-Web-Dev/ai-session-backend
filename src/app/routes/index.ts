@@ -2,7 +2,7 @@ import { Router } from 'express';
 import { DeepseekRoutes } from '../modules/deepseek/deepseek.route';
 import { MidjourneyRoutes } from '../modules/midjourney/midjourney.route';
 import { OpenAIRoutes } from '../modules/openai/openai.route';
-import { PaymentRoutes } from '../modules/payment/payment.route';
+import { SubscriptionRoutes } from '../modules/userSubscription/userSubscription.route';
 
 
 const router = Router();
@@ -31,8 +31,8 @@ const moduleRoutes: ModuleRoute[] = [
     },
 
     {
-        path : "/payment",
-        route : PaymentRoutes
+        path: "/stripe",
+        route: SubscriptionRoutes
     }
 ];
 

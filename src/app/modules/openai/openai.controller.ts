@@ -1,68 +1,48 @@
+import { getAuth } from "@clerk/express";
 import { StatusCodes } from "http-status-codes";
 import catchAsync from "../../utils/catchAsync";
 import sendResponse from "../../utils/sendResponse";
+import { OpenAIService } from "./openai.service";
 
 const OpenAIConversation = catchAsync(async (req, res) => {
-    // const result = await BrandService.getAllBrand(req.query);
+    const { userId } = getAuth(req);
+    const result = await OpenAIService.OpenAIConversation(userId!, req.body);
 
     sendResponse(res, {
         statusCode: StatusCodes.OK,
         success: true,
-        message: 'Brands are retrieved successfully',
-        // meta: result.meta,
-        data: result.result,
+        message: 'Conversation created successfully',
+        data: result,
     });
 });
 const OpenAICode = catchAsync(async (req, res) => {
-    // const result = await BrandService.getAllBrand(req.query);
+    const { userId } = getAuth(req);
+
+    const result = await OpenAIService.OpenAICode(userId!, req.body);
 
     sendResponse(res, {
         statusCode: StatusCodes.OK,
         success: true,
-        message: 'Brands are retrieved successfully',
-        // meta: result.meta,
-        data: result.result,
+        message: 'Code is retrieved successfully',
+        data: result,
     });
 });
 const OpenAIImage = catchAsync(async (req, res) => {
-    // const result = await BrandService.getAllBrand(req.query);
+    const { userId } = getAuth(req);
+    const result = await OpenAIService.OpenAIImage(userId!, req.body);
 
     sendResponse(res, {
         statusCode: StatusCodes.OK,
         success: true,
-        message: 'Brands are retrieved successfully',
-        // meta: result.meta,
-        data: result.result,
+        message: 'Image is retrieved successfully',
+        data: result
     });
 });
-const OpenAIVideo = catchAsync(async (req, res) => {
-    // const result = await BrandService.getAllBrand(req.query);
 
-    sendResponse(res, {
-        statusCode: StatusCodes.OK,
-        success: true,
-        message: 'Brands are retrieved successfully',
-        // meta: result.meta,
-        data: result.result,
-    });
-});
-const OpenAIMusic = catchAsync(async (req, res) => {
-    // const result = await BrandService.getAllBrand(req.query);
-
-    sendResponse(res, {
-        statusCode: StatusCodes.OK,
-        success: true,
-        message: 'Brands are retrieved successfully',
-        // meta: result.meta,
-        data: result.result,
-    });
-});
 
 
 export const OpenAIController = {
     OpenAIConversation,
     OpenAICode,
     OpenAIImage,
-    OpenAIVideo,
-    OpenAIMusic
 };

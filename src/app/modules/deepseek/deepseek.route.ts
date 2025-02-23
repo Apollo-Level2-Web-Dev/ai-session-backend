@@ -1,12 +1,11 @@
 import { Router } from 'express';
+import { DeepSeekController } from './deepseek.controller';
 
 const router = Router();
 
-router.post('/coversation', (req, res) => {});
-router.post('/code', (req, res) => {});
-router.post('/music', (req, res) => {});
-router.post('/video', (req, res) => {});
-router.post('/image', (req, res) => {});
+router.post('/coversation', DeepSeekController.DeepSeekConversation);
+router.post('/code', DeepSeekController.DeepSeekCode);
+router.post('/image', DeepSeekController.DeepSeekImage);
 
 
 

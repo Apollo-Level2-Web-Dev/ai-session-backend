@@ -1,6 +1,6 @@
 /* eslint-disable no-unused-vars */
 
-export interface TUser {
+export interface TUserApiLimit {
   userId: string;
   count: number;
 }

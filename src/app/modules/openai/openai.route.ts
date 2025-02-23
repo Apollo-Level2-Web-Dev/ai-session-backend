@@ -1,12 +1,11 @@
 import { Router } from 'express';
+import { OpenAIController } from './openai.controller';
 
 const router = Router();
 
-router.post('/coversation', (req, res) => {});
-router.post('/code', (req, res) => {});
-router.post('/music', (req, res) => {});
-router.post('/video', (req, res) => {});
-router.post('/image', (req, res) => {});
+router.post('/coversation', OpenAIController.OpenAIConversation);
+router.post('/code', OpenAIController.OpenAICode);
+router.post('/image', OpenAIController.OpenAIImage);
 
 
 

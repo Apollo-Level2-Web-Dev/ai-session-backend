@@ -1,6 +1,6 @@
 import config from '../config';
-import { USER_ROLE } from '../modules/User/user.constant';
-import { User } from '../modules/User/user.model';
+import { USER_ROLE } from '../modules/userApiLimit/user.constant';
+import { User } from '../modules/userApiLimit/userApiLimit.model';
 
 const superUser = {
   id: '0001',

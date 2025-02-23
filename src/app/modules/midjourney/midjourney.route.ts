@@ -1,12 +1,10 @@
 import { Router } from 'express';
+import { MidjourneyController } from './midjourney.controller';
 
 const router = Router();
 
-router.post('/coversation', (req, res) => {});
-router.post('/code', (req, res) => {});
-router.post('/music', (req, res) => {});
-router.post('/video', (req, res) => {});
-router.post('/image', (req, res) => {});
+
+router.post('/image', MidjourneyController.MidjourneyImage);
 
 
 

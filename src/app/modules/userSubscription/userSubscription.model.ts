@@ -2,7 +2,7 @@
 
 import { Schema, model } from 'mongoose';
 
-import { TUserSubscription } from './payment.interface';
+import { TUserSubscription } from './userSubscription.interface';
 
 
 const userSubscriptionSchema = new Schema<TUserSubscription>(

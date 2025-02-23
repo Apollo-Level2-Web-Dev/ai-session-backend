@@ -1,66 +1,11 @@
-import { StatusCodes } from "http-status-codes";
-import sendResponse from "../../utils/sendResponse";
+/* eslint-disable no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 
-const MidjourneyConversation = (async (req, res) => {
-    // const result = await BrandService.getAllBrand(req.query);
+const MidjourneyImage = async (userId: string, payload: any) => {
 
-    sendResponse(res, {
-        statusCode: StatusCodes.OK,
-        success: true,
-        message: 'Brands are retrieved successfully',
-        // meta: result.meta,
-        data: result.result,
-    });
-});
-const MidjourneyCode = (async (req, res) => {
-    // const result = await BrandService.getAllBrand(req.query);
-
-    sendResponse(res, {
-        statusCode: StatusCodes.OK,
-        success: true,
-        message: 'Brands are retrieved successfully',
-        // meta: result.meta,
-        data: result.result,
-    });
-});
-const MidjourneyImage = (async (req, res) => {
-    // const result = await BrandService.getAllBrand(req.query);
-
-    sendResponse(res, {
-        statusCode: StatusCodes.OK,
-        success: true,
-        message: 'Brands are retrieved successfully',
-        // meta: result.meta,
-        data: result.result,
-    });
-});
-const MidjourneyVideo = (async (req, res) => {
-    // const result = await BrandService.getAllBrand(req.query);
-
-    sendResponse(res, {
-        statusCode: StatusCodes.OK,
-        success: true,
-        message: 'Brands are retrieved successfully',
-        // meta: result.meta,
-        data: result.result,
-    });
-});
-const MidjourneyMusic = (async (req, res) => {
-    // const result = await BrandService.getAllBrand(req.query);
-
-    sendResponse(res, {
-        statusCode: StatusCodes.OK,
-        success: true,
-        message: 'Brands are retrieved successfully',
-        // meta: result.meta,
-        data: result.result,
-    });
-});
+};
 
 export const MidjourneyService = {
-    MidjourneyConversation,
-    MidjourneyCode,
     MidjourneyImage,
-    MidjourneyVideo,
-    MidjourneyMusic
 };

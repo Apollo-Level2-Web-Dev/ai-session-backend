@@ -1,66 +1,20 @@
-import { StatusCodes } from "http-status-codes";
-import sendResponse from "../../utils/sendResponse";
+/* eslint-disable no-unused-vars */
+/* eslint-disable @typescript-eslint/no-explicit-any */
+/* eslint-disable @typescript-eslint/no-unused-vars */
 
-const DeepSeekConversation = (async (req, res) => {
-    // const result = await BrandService.getAllBrand(req.query);
+const DeepSeekConversation = async (userId: string, payload: any) => {
 
-    sendResponse(res, {
-        statusCode: StatusCodes.OK,
-        success: true,
-        message: 'Brands are retrieved successfully',
-        // meta: result.meta,
-        data: result.result,
-    });
-});
-const DeepSeekCode = (async (req, res) => {
-    // const result = await BrandService.getAllBrand(req.query);
+};
+const DeepSeekCode = async (userId: string, payload: any) => {
 
-    sendResponse(res, {
-        statusCode: StatusCodes.OK,
-        success: true,
-        message: 'Brands are retrieved successfully',
-        // meta: result.meta,
-        data: result.result,
-    });
-});
-const DeepSeekImage = (async (req, res) => {
-    // const result = await BrandService.getAllBrand(req.query);
+};
+const DeepSeekImage = async (userId: string, payload: any) => {
 
-    sendResponse(res, {
-        statusCode: StatusCodes.OK,
-        success: true,
-        message: 'Brands are retrieved successfully',
-        // meta: result.meta,
-        data: result.result,
-    });
-});
-const DeepSeekVideo = (async (req, res) => {
-    // const result = await BrandService.getAllBrand(req.query);
+};
 
-    sendResponse(res, {
-        statusCode: StatusCodes.OK,
-        success: true,
-        message: 'Brands are retrieved successfully',
-        // meta: result.meta,
-        data: result.result,
-    });
-});
-const DeepSeekMusic = (async (req, res) => {
-    // const result = await BrandService.getAllBrand(req.query);
-
-    sendResponse(res, {
-        statusCode: StatusCodes.OK,
-        success: true,
-        message: 'Brands are retrieved successfully',
-        // meta: result.meta,
-        data: result.result,
-    });
-});
 
 export const DeepSeekService = {
     DeepSeekConversation,
     DeepSeekCode,
     DeepSeekImage,
-    DeepSeekVideo,
-    DeepSeekMusic
 };

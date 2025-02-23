@@ -1,8 +1,8 @@
 /* eslint-disable @typescript-eslint/no-this-alias */
 import { Schema, model } from 'mongoose';
-import { TUser } from '../user/user.interface';
+import { TUserApiLimit } from './userApiLimit.interface';
 
-const userSchema = new Schema<TUser>(
+const userApiLimitSchema = new Schema<TUserApiLimit>(
   {
     userId: {
       type: String,
@@ -21,4 +21,4 @@ const userSchema = new Schema<TUser>(
 
 
 
-export const User = model<TUser>('User', userSchema);
+export const UserApiLimit = model<TUserApiLimit>('UserApiLimit', userApiLimitSchema);
