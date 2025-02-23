@@ -12,7 +12,7 @@ const DeepSeekConversation = catchAsync(async (req, res) => {
     sendResponse(res, {
         statusCode: StatusCodes.OK,
         success: true,
-        message: 'Brands are retrieved successfully',
+        message: 'Conversation is retrieved successfully',
         data: result,
     });
 });
@@ -24,7 +24,7 @@ const DeepSeekCode = catchAsync(async (req, res) => {
     sendResponse(res, {
         statusCode: StatusCodes.OK,
         success: true,
-        message: 'Brands are retrieved successfully',
+        message: 'Code is retrieved successfully',
         data: result,
     });
 });
