@@ -3,98 +3,50 @@
 
 import { StatusCodes } from "http-status-codes";
 import AppError from "../../errors/AppError";
-import { apiLimit } from "../../lib/api-limit";
-import { userSubscription } from "../../lib/user-subscription";
 import { openai } from "../../utils/openai";
 
-const OpenAICode = async (
-    userId: string,
-    payload: any
-) => {
+const OpenAICode = async (payload: any) => {
 
-    const codeInstructionMessage = {
-        content: "You are a code generator. You must answer only in markdown code snippets. Use code comments for explanations.",
-        role: "system"
-    }
-
-
-    if (!userId) {
-        throw new AppError(StatusCodes.UNAUTHORIZED, 'Unauthorized')
-    }
 
     if (!openai.apiKey) {
-        throw new AppError(StatusCodes.INTERNAL_SERVER_ERROR, 'OpenAI API key not configured')
-    }
-
-    if (!payload.messages) {
-        throw new AppError(StatusCodes.BAD_REQUEST, 'Missing messages')
-    }
-
-    const freeTrial = await apiLimit.checkApiLimit(userId)
-    const isPro = await userSubscription.checkSubscription(userId)
-
-    if (!freeTrial && !isPro) {
-        throw new AppError(StatusCodes.FORBIDDEN, 'Free trial limit reached')
+        throw new AppError(StatusCodes.INTERNAL_SERVER_ERROR, 'OpenAI API key not configured');
     }
 
     const response = await openai.chat.completions.create({
         model: "gpt-3.5-turbo",
-        messages: [codeInstructionMessage, ...payload.messages],
-    })
+        messages: [{
+            content: `You are a code generator. You must answer only in markdown code snippets. Use code comments for explanations. ${payload.messages}`,
+            role: "system"
+        }],
+    });
 
-    if (!isPro) await apiLimit.increaseApiLimit(userId)
-
-    await apiLimit.increaseApiLimit(userId)
-
-    return response.choices[0].message
+    return response.choices[0].message;
 };
+
 const OpenAIConversation = async (
-    userId: string,
     payload: any
 ) => {
 
-    const conversationInstructionMessage = {
-        content: "You are a conversation generator. You must answer in complete sentences.",
-        role: "system"
-    }
-
-    if (!userId) {
-        throw new AppError(StatusCodes.UNAUTHORIZED, 'Unauthorized')
-    }
 
     if (!openai.apiKey) {
         throw new AppError(StatusCodes.INTERNAL_SERVER_ERROR, 'OpenAI API key not configured')
     }
 
-    if (!payload.messages) {
-        throw new AppError(StatusCodes.BAD_REQUEST, 'Missing messages')
-    }
-
-    const freeTrial = await apiLimit.checkApiLimit(userId)
-    const isPro = await userSubscription.checkSubscription(userId)
-
-    if (!freeTrial && !isPro) {
-        throw new AppError(StatusCodes.FORBIDDEN, 'Free trial limit reached')
-    }
-
     const response = await openai.chat.completions.create({
         model: "gpt-3.5-turbo",
-        messages: [conversationInstructionMessage, ...payload.messages],
+        messages: [{
+            content: `You are a conversation generator. You must answer in complete sentences. ${payload.messages}`,
+            role: "system"
+        }],
     })
-
-    if (!isPro) await apiLimit.increaseApiLimit(userId)
 
     return response.choices[0].message
 }
+
 const OpenAIImage = async (
-    userId: string,
     payload: any
 ) => {
 
-
-    if (!userId) {
-        throw new AppError(StatusCodes.UNAUTHORIZED, 'Unauthorized')
-    }
 
     if (!openai.apiKey) {
         throw new AppError(StatusCodes.INTERNAL_SERVER_ERROR, 'OpenAI API key not configured')
@@ -112,12 +64,6 @@ const OpenAIImage = async (
         throw new AppError(StatusCodes.BAD_REQUEST, 'Resolution is required')
     }
 
-    const freeTrial = await apiLimit.checkApiLimit(userId)
-    const isPro = await userSubscription.checkSubscription(userId)
-
-    if (!freeTrial && !isPro) {
-        throw new AppError(StatusCodes.FORBIDDEN, 'Free trial limit reached')
-    }
 
     const response = await openai.images.generate({
         prompt: payload.prompt,
@@ -125,13 +71,11 @@ const OpenAIImage = async (
         size: payload.resolution
     })
 
-    if (!isPro) await apiLimit.increaseApiLimit(userId)
 
     return response.data
 
 
 }
-
 
 export const OpenAIService = {
     OpenAIConversation,
